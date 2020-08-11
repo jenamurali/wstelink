@@ -10,3 +10,8 @@ export const compeletedTask = id => ({
     type : Action.COMPELETED_TASK,
     id
 })
+
+export const deleteTask = id => ({
+    type : Action.REMOVE_TASK,
+    id
+})

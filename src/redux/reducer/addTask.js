@@ -6,6 +6,7 @@ const defaultState = {
 }
 
 function addTaskReducer (state = defaultState, action) {    
+    
     switch (action.type) {
         case Action.ADD_TASK : 
         
@@ -28,6 +29,11 @@ function addTaskReducer (state = defaultState, action) {
                     }
                     return data
                 })
+            }
+        case Action.REMOVE_TASK : 
+            return {
+                ...state,
+                task : state.task.filter(data => data.ID !== action.id)
             }
         default :
             return {
