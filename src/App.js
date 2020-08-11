@@ -1,7 +1,7 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import { addTask } from "./redux/action/action";
-import { Route, Link, Switch } from "react-router-dom";
+import { Route, Link, Switch, Redirect } from "react-router-dom";
 
 import Task from "./component/ViewTask/ViewTask"
 import EditTask from "./component/EditComponent/EditComponent"
@@ -21,6 +21,7 @@ class App extends React.Component {
       return false
     }
     this.props.updateTask(this.state.task)
+    this.setState({ task: "" });
   }
   render() {
     let { task } = this.state;
@@ -30,15 +31,14 @@ class App extends React.Component {
         <div className="row">
           <h1>TODO MATIC</h1>
           <Switch>
-            <Route exact path='/Edit/:id' component={EditTask} />
+            <Route exact path='/Edit/:id' render={() => allTask.length === 0 ? <Redirect to='/' /> : <EditTask />} />
             <Route path='/'>
               <div className="col-md-12">
-              
                 <div className="form-group">
                   <input type="text" value={task} onChange={this.changeTask} placeholder="Task" className="form-control" />
                 </div>
                 <input className="btn btn-primary" type="button" value="ADD TASK" onClick={this.addTask} /><br /><br />
-
+                
                 <div className="btn-group">
                   <Link type="button btn-primary" className="btn btn-secondary mr-1" to="/">Show All Task</Link>
                   <Link type="button btn-primary" className="btn btn-secondary mr-1" to="/Active">Show Active Task</Link>

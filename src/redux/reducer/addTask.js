@@ -8,8 +8,7 @@ const defaultState = {
 function addTaskReducer (state = defaultState, action) {    
     
     switch (action.type) {
-        case Action.ADD_TASK : 
-        
+        case Action.ADD_TASK :
             return {
                 ...state,
                 task: [...state.task,{
@@ -19,7 +18,6 @@ function addTaskReducer (state = defaultState, action) {
                 }]
             }
         case Action.COMPELETED_TASK :
-
             return {
                 ...state,
                 task : state.task.map(data => {
@@ -34,6 +32,17 @@ function addTaskReducer (state = defaultState, action) {
             return {
                 ...state,
                 task : state.task.filter(data => data.ID !== action.id)
+            }
+        case Action.EDIT_TASK :
+            return {
+                ...state,
+                task : state.task.map(data => {
+                    if(data.ID === action.id){
+                        data.title = action.value;
+                        return data;
+                    }
+                    return data
+                })
             }
         default :
             return {

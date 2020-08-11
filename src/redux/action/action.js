@@ -15,3 +15,9 @@ export const deleteTask = id => ({
     type : Action.REMOVE_TASK,
     id
 })
+
+export const editTask = (value,id) => ({
+    type : Action.EDIT_TASK,
+    value,
+    id
+})
