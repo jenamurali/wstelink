@@ -1,0 +1,7 @@
+
+export const Action = {
+    ADD_TASK : "ADD_TASK",
+    REMOVE_TASK : "REMOVE_TASK",
+    EDIT_TASK : "EDIT_TASK",
+    COMPELETED_TASK : "COMPELETED_TASK"
+};
